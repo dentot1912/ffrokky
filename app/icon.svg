@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="ffGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0071e3" />
+      <stop offset="50%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.6" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+  
+  <!-- Background rounded squircle -->
+  <rect width="128" height="128" rx="30" fill="url(#ffGrad)" />
+  
+  <!-- Inner subtle border -->
+  <rect x="2" y="2" width="124" height="124" rx="28" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2" />
+  
+  <!-- Monogram FF Icon -->
+  <g fill="none" stroke="#ffffff" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadow)">
+    <!-- First F -->
+    <path d="M40 34 v60" />
+    <path d="M40 38 h26" />
+    <path d="M40 64 h18" />
+    
+    <!-- Second F -->
+    <path d="M72 46 v48" stroke="url(#glow)" />
+    <path d="M72 50 h24" stroke="url(#glow)" />
+    <path d="M72 72 h16" stroke="url(#glow)" />
+  </g>
+  
+  <!-- Star sparkle -->
+  <path d="M98 28 L100 34 L106 36 L100 38 L98 44 L96 38 L90 36 L96 34 Z" fill="#ffffff" opacity="0.95" />
+</svg>
