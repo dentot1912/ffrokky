@@ -83,9 +83,10 @@ const CATALOG_ITEMS = [
     image: "assets/birthday-04/banner.png",
     badgeLabel: "Featured",
     category: "website ulang tahun",
-    title: "Website Birthday Password",
-    desc: "Bikin ulang tahunnya jadi lebih seru. Masuk pakai password, lalu temukan foto, musik, dan kejutan spesial. Sekali buka, langsung bikin penasaran.",
+    title: "Website Birthday Code",
+    desc: "Bikin ulang tahunnya jadi lebih seru. Masuk pakai code, lalu temukan foto, musik, dan kejutan spesial. Sekali buka, langsung bikin penasaran.",
     tech: ["Foto/Video", "Music", "Free Request"],
+    price: 25000,
     filter: "website ulang tahun",
     images: [
       "assets/birthday-04/image1.png",
@@ -106,6 +107,7 @@ const CATALOG_ITEMS = [
     title: "Website Birthday Kitty",
     desc: "Rayakan ulang tahunnya dengan cara yang lebih gemas. Isi dengan foto, video, musik, dan kejutan ala Hello Kitty.",
     tech: ["Foto/Video", "Music", "Free Request"],
+    price: 25000,
     filter: "website ulang tahun",
     images: [
       "assets/birthday-03/banner.png",
@@ -128,6 +130,7 @@ const CATALOG_ITEMS = [
     title: "Website Birthday Memories",
     desc: "Bikin hari spesialnya makin seru dengan foto, video, musik, dan masa masa indah dalam satu website.",
     tech: ["Foto/Video", "Music", "Free Request"],
+    price: 25000,
     filter: "website ulang tahun",
     images: [
       "assets/birthday-02/banner.png",
@@ -145,6 +148,7 @@ const CATALOG_ITEMS = [
     title: "Website Birthday Puzzle",
     desc: "Website ulang tahun interaktif berisi puzzle, foto, musik, dan kejutan spesial yang bisa bikin momen ulang tahun jadi lebih berkesan.",
     tech: ["Foto/Video", "Music", "Free Request"],
+    price: 25000,
     filter: "website ulang tahun",
     images: [
       "assets/birthday-01/banner.png",
@@ -166,6 +170,7 @@ const CATALOG_ITEMS = [
     title: "Voca Kopi",
     desc: "Website UMKM untuk memperkenalkan Voca Kopi dengan tampilan modern, katalog menu, dan informasi kedai yang mudah diakses.",
     tech: ["Katalog Menu", "Responsive", "Free Request"],
+    price: 150000,
     filter: "website UMKM",
     images: [
       "assets/voca/banner.png",
@@ -302,8 +307,14 @@ function CatalogCard({
         <div className="catalog-img-overlay" />
       </div>
       <div className="catalog-body">
-        <div className="catalog-category">{item.category}</div>
-        <div className="catalog-title">{item.title}</div>
+          <div className="catalog-price">
+            <div className="catalog-title">{item.title}</div>
+            {(item as { price?: number }).price !== undefined && (
+                <span className="catalog-price-value">
+                  {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format((item as { price: number }).price)}
+                </span>
+            )}
+          </div>
         <div className="catalog-desc">{item.desc}</div>
         <div className="catalog-footer">
           <div className="catalog-tech">
@@ -359,12 +370,12 @@ function CatalogModal({
         {/* ── FULL-SCREEN BG IMAGE ── */}
         <div className="mfs-bg-wrap">
           {slides.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt=""
-              className={`mfs-bg-img${i === activeSlide ? " active" : ""}`}
-            />
+            <div key={i} className={`mfs-bg-slide${i === activeSlide ? " active" : ""}`}>
+              {/* blurred bg fill — visible on mobile so contain image has no black bars */}
+              <img src={src} alt="" className="mfs-bg-blur" />
+              {/* main crisp image */}
+              <img src={src} alt="" className="mfs-bg-img" />
+            </div>
           ))}
           {/* dark gradient overlay so text stays readable */}
           <div className="mfs-gradient-overlay" />
@@ -425,7 +436,15 @@ function CatalogModal({
 
           <div className="mfs-info-body">
             <div className="mfs-info-left">
-              <h2 className="mfs-title font-display">{item.title}</h2>
+              <div className="mfs-price">
+                <h2 className="mfs-title font-display">{item.title}</h2>
+                {(item as { price?: number }).price !== undefined && (
+                  
+                    <span className="mfs-price-value">
+                      {new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format((item as { price: number }).price)}
+                    </span>
+                )}
+              </div>
               <p className="mfs-desc">{item.desc}</p>
             </div>
 
