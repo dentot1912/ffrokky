@@ -624,8 +624,8 @@ function HeroSection() {
 
           <div className="hero-stats">
             {[
-              { value: "10+", label: "Customers" },
-              { value: "100%", label: "Client Satisfaction" },
+              { value: "100+", label: "Customers" },
+              { value: "97%", label: "Client Satisfaction" },
             ].map((s) => (
               <div key={s.label} className="stat-item">
                 <div className="stat-value">{s.value}</div>
